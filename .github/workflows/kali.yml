@@ -45,7 +45,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            theflightsims/kasm-kali-rolling:latest-amd64
+            theflightsims/kali-kasm:latest-amd64
 
   build-kali-arm64v8:
     runs-on: ubuntu-latest
@@ -83,4 +83,4 @@ jobs:
           platforms: linux/arm64/v8
           push: true
           tags: |
-            theflightsims/kasm-kali-rolling:latest-arm64v8
+            theflightsims/kali-kasm:latest-arm64v8
