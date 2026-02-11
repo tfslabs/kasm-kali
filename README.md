@@ -13,10 +13,16 @@ Users are recommended to use those available containers
 
 ## Usage
 
-```bash
-# For AMD64 computers
-docker pull theflightsims/kasm-kali-rolling:latest-amd64
+1. Try to pull the Kali desktop image from Docker Hub
 
-# For ARM64v8 desktop
-docker pull theflightsims/kasm-kali-rolling:latest-arm64v8
-```
+    ```bash
+    # For AMD64
+    docker pull theflightsims/kasm-kali-rolling:latest-amd64
+    
+    # For ARM64v8
+    docker pull theflightsims/kasm-kali-rolling:latest-arm64v8
+    ```
+
+2. Customize the image registry, [using this document from KASM](https://www.kasmweb.com/docs/develop/how_to/building_images.html#basic-build)
+
+![KASM Desktop Customization](https://www.kasmweb.com/docs/develop/_images/image_registration.webp)

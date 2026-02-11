@@ -25,8 +25,6 @@ RUN apt update \
     kali-tools-reporting gcc g++ gdb libtool net-tools build-essential uuid-dev python3 python3-pip python3-venv \
     make cmake automake autoconf ninja-build valgrind lldb pkg-config curl git 7zip gzip tar nodejs npm ccache \
     cppcheck bear tree htop unzip \
-    && curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb \
-    && apt install -y /tmp/google-chrome-stable_current_amd64.deb \
     && apt autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
