@@ -8,8 +8,8 @@ The build images are based on [Kali Rolling Desktop](https://hub.docker.com/r/ka
 
 Users are recommended to use those available containers
 
-- `theflightsims/kasm-kali-rolling:latest-amd64` (for AMD64 desktop)
-- `theflightsims/kasm-kali-rolling:latest-arm64v8` (for ARM64v8 desktop)
+- `theflightsims/kasm-kali:latest-amd64` (for AMD64 desktop)
+- `theflightsims/kasm-kali:latest-arm64v8` (for ARM64v8 desktop)
 
 ## Usage
 
@@ -17,10 +17,10 @@ Users are recommended to use those available containers
 
     ```bash
     # For AMD64
-    docker pull theflightsims/kasm-kali-rolling:latest-amd64
+    docker pull theflightsims/kasm-kali:latest-amd64
     
     # For ARM64v8
-    docker pull theflightsims/kasm-kali-rolling:latest-arm64v8
+    docker pull theflightsims/kasm-kali:latest-arm64v8
     ```
 
 2. Customize the image registry, [using this document from KASM](https://www.kasmweb.com/docs/develop/how_to/building_images.html#basic-build)
