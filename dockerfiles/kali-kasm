@@ -1,0 +1,43 @@
+FROM kasmweb/kali-rolling-desktop:1.17.0-rolling-weekly
+USER root
+
+ENV HOME="/home/kasm-default-profile"
+ENV STARTUPDIR="/dockerstartup"
+ENV INST_SCRIPTS="$STARTUPDIR/install"
+WORKDIR $HOME
+
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV TZ="Etc/UTC"
+
+######### Customize Container Here ###########
+
+RUN printf '%s\n' '#!/bin/sh' 'exit 101' > /usr/sbin/policy-rc.d && chmod +x /usr/sbin/policy-rc.d \
+    && printf '%s\n' '#!/bin/sh' 'exit 0' > /usr/local/bin/systemctl-fake && chmod +x /usr/local/bin/systemctl-fake \
+    && ln -sf /usr/local/bin/systemctl-fake /bin/systemctl
+
+RUN apt update \
+    && apt dist-upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+    && apt install -y \
+    apt-transport-https kali-linux-core kali-linux-default kali-tools-fuzzing kali-tools-crypto-stego \
+    kali-tools-sdr kali-tools-voip kali-linux-firmware kali-tools-web kali-tools-database \
+    kali-tools-windows-resources kali-tools-vulnerability kali-tools-passwords kali-tools-reverse-engineering \
+    kali-tools-exploitation kali-tools-social-engineering kali-tools-sniffing-spoofing kali-tools-forensics \
+    kali-tools-reporting gcc g++ gdb libtool net-tools build-essential uuid-dev python3 python3-pip python3-venv \
+    make cmake automake autoconf ninja-build valgrind lldb pkg-config curl git 7zip gzip tar nodejs npm ccache \
+    cppcheck bear tree htop unzip \
+    && curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb \
+    && apt install -y /tmp/google-chrome-stable_current_amd64.deb \
+    && apt autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+######### End Customizations ###########
+
+RUN chown 1000:0 $HOME
+RUN $STARTUPDIR/set_user_permission.sh $HOME || true
+
+ENV HOME="/home/kasm-user"
+WORKDIR $HOME
+RUN mkdir -p $HOME && chown -R 1000:0 $HOME
+
+USER 1000
